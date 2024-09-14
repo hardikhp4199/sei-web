@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @include('Expertpanel.layouts.shared.title-meta', ['title' => 'Sign Up'])
+    @include('Expertpanel.layouts.shared.head-css', ['mode' => $mode ?? '', 'demo' => $demo ?? ''])
+</head>
+<body class="authentication-bg position-relative">
+    <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5 position-relative">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xxl-8 col-lg-10">
+                    <div class="card overflow-hidden">
+                        <div class="row g-0">
+                            <div class="col-lg-6 d-none d-lg-block p-2">
+                                <img src="/images/signup.png" alt="" class="img-fluid rounded h-100">
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="d-flex flex-column h-100">
+                                    <div class="auth-brand p-4">
+                                        <a href="#" class="logo-light">
+                                            <img src="/admin/images/sei_group.png" alt="logo" height="150">
+                                        </a>
+                                    </div>
+                                    <div class="p-4 my-auto">
+                                        <h4 class="fs-20">Expert Sign Up</h4>
+                                        <p class="text-muted mb-3">Create your expert account</p>
+
+                                        <form method="POST" action="{{ route('expert.signup') }}">
+                                            @csrf
+
+                                            @if ($errors->any())
+                                                @foreach ($errors->all() as $error)
+                                                    <p class="text-danger">{{ $error }}</p>
+                                                @endforeach
+                                            @endif
+
+                                            <div class="mb-3">
+                                                <label for="username" class="form-label">First name</label>
+                                                <input class="form-control" type="text" name="first_name" id="first_name" placeholder="Enter your firstname" value="{{ old('first_name') }}">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="username" class="form-label">Last name</label>
+                                                <input class="form-control" type="text" name="last_name" id="last_name" placeholder="Enter your lastname" value="{{ old('lasst_name') }}">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="email" class="form-label">Email address</label>
+                                                <input class="form-control" type="email" name="email" id="email" placeholder="Enter your email" value="{{ old('email') }}">
+                                            </div>
+                                            <div class="mb-3">
+    <label for="phone" class="form-label">Phone Number</label>
+    <input class="form-control" 
+           type="text" 
+           name="phone" 
+           id="phone" 
+           maxlength="10" 
+           placeholder="Enter your phone number" 
+           value="{{ old('phone') }}"
+           inputmode="numeric" 
+           pattern="[0-9]*" 
+           oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+</div>
+
+                                            <div class="mb-3">
+                                                <label for="city" class="form-label">City</label>
+                                                <input class="form-control" type="text" name="city" id="city" placeholder="Enter your city" value="{{ old('city') }}">
+                                            </div>
+                                           
+                                            
+                                            <div class="mb-0 text-start">
+                                                <button class="btn btn-soft-primary w-100" type="submit">
+                                                    <i class="ri-login-circle-fill me-1"></i> 
+                                                    <span class="fw-bold">Sign Up</span>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="text-dark-emphasis">Already have an account? <a href="{{ route('expert.login') }}" class="text-dark fw-bold ms-1 link-offset-3 text-decoration-underline"><b>Sign in</b></a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer footer-alt fw-medium">
+        <span class="text-dark">
+            <script>
+                document.write(new Date().getFullYear())
+            </script> © SEI Group. 2024. All rights reserved. | Design & Developed by Adi Creations
+        </span>
+    </footer>
+
+    @include('Expertpanel.layouts.shared.footer-scripts')
+</body>
+</html>
+
