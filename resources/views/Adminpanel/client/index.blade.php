@@ -16,9 +16,9 @@
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
     <!--! END: Favicon-->
     <!--! BEGIN: Bootstrap CSS-->
-    
+
     <link rel="stylesheet" type="text/css" href="{{ asset('admin/css/bootstrap.min.css') }}">
-    <!--! END: Bootstrap CSS--> 
+    <!--! END: Bootstrap CSS-->
     <!--! BEGIN: Vendors CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/css/vendors.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{asset('admin/vendors/css/dataTables.bs5.min.css') }}">
@@ -38,13 +38,13 @@
 			<script src="https:oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
-        @include('Adminpanel.admin_headerlink')
+    @include('Adminpanel.admin_headerlink')
 </head>
 
 <body>
-<nav class="nxl-navigation">
-    @include('Adminpanel.siderbarmenu')
-     
+    <nav class="nxl-navigation">
+        @include('Adminpanel.siderbarmenu')
+
     </nav>
     <!--! ================================================================ !-->
     <!--! [Start] Navigation Manu !-->
@@ -53,8 +53,8 @@
         <div class="navbar-wrapper">
             <div class="m-header">
                 <a href="index.html" class="b-brand"> -->
-                    <!-- ========   change your logo hear   ============ -->
-                    <!-- <img src="{{asset('admin/images/logo-full.png') }}" alt="" class="logo logo-lg">
+    <!-- ========   change your logo hear   ============ -->
+    <!-- <img src="{{asset('admin/images/logo-full.png') }}" alt="" class="logo logo-lg">
                     <img src="{{asset('admin/images/logo-abbr.png') }}" alt="" class="logo logo-sm">
                 </a>
             </div>
@@ -2452,81 +2452,92 @@
                 <div class="row">
                     <div class="col-lg-12">
                         @if($errors->has('client_not_found'))
-                            <div class="alert alert-danger">
-                                {{ $errors->first('client_not_found') }}
-                            </div>
+                        <div class="alert alert-danger">
+                            {{ $errors->first('client_not_found') }}
+                        </div>
+                        @endif
+                        @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
                         @endif
                         <div class="card stretch stretch-full">
                             <div class="card-body p-0">
                                 <div class="table-responsive">
-                                <table class="table table-hover" id="clientList">
-    <thead>
-        <tr>
-            <th class="wd-30">
-                <div class="btn-group mb-1">
-                    <div class="custom-control custom-checkbox ms-1">
-                        <input type="checkbox" class="custom-control-input" id="checkAllClient">
-                        <label class="custom-control-label" for="checkAllClient"></label>
-                    </div>
-                </div>
-            </th>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th class="text-end">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($clients as $key => $client)
-        <tr class="single-item">
-            <td>
-                <div class="item-checkbox ms-1">
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input checkbox" id="checkBox_{{ $loop->index }}">
-                        <label class="custom-control-label" for="checkBox_{{ $loop->index }}"></label>
-                    </div>
-                </div>
-            </td>
-            <td>{{ $key + 1 }}</td>
-            <td>{{ $client->first_name }} {{ $client->last_name }}</td>
-            <td>{{ $client->email }}</td>
-            <td>
-                <div class="hstack gap-2 justify-content-end">
-                    <a href="javascript:void(0)" class="avatar-text avatar-md">
-                        <i class="feather feather-eye"></i>
-                    </a>
-                    <div class="dropdown">
-                        <a href="javascript:void(0)" class="avatar-text avatar-md" data-bs-toggle="dropdown" data-bs-offset="0,21">
-                            <i class="feather feather-more-horizontal"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" href="{{ route('admin.client.edit', $client->Clientmaster_IDP) }}">
-                                    <i class="feather feather-edit-3 me-3"></i>
-                                    <span>Edit</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item printBTN" href="javascript:void(0)">
-                                    <i class="feather feather-printer me-3"></i>
-                                    <span>Print</span>
-                                </a>
-                            </li>
-                            <li class="dropdown-divider"></li>
-                            <li>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="feather feather-trash-2 me-3"></i>
-                                    <span>Delete</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+                                    <table class="table table-hover" id="clientList">
+                                        <thead>
+                                            <tr>
+                                                <th class="wd-30">
+                                                    <div class="btn-group mb-1">
+                                                        <div class="custom-control custom-checkbox ms-1">
+                                                            <input type="checkbox" class="custom-control-input" id="checkAllClient">
+                                                            <label class="custom-control-label" for="checkAllClient"></label>
+                                                        </div>
+                                                    </div>
+                                                </th>
+                                                <th>Id</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th class="text-end">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($clients as $key => $client)
+                                            <tr class="single-item">
+                                                <td>
+                                                    <div class="item-checkbox ms-1">
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input checkbox" id="checkBox_{{ $loop->index }}">
+                                                            <label class="custom-control-label" for="checkBox_{{ $loop->index }}"></label>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>{{ $key + 1 }}</td>
+                                                <td>{{ $client->first_name }} {{ $client->last_name }}</td>
+                                                <td>{{ $client->email }}</td>
+                                                <td>
+                                                    <div class="hstack gap-2 justify-content-end">
+                                                        <a href="javascript:void(0)" class="avatar-text avatar-md">
+                                                            <i class="feather feather-eye"></i>
+                                                        </a>
+                                                        <div class="dropdown">
+                                                            <a href="javascript:void(0)" class="avatar-text avatar-md" data-bs-toggle="dropdown" data-bs-offset="0,21">
+                                                                <i class="feather feather-more-horizontal"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu">
+                                                                <li>
+                                                                    <a class="dropdown-item" href="{{ route('admin.client.edit', $client->Clientmaster_IDP) }}">
+                                                                        <i class="feather feather-edit-3 me-3"></i>
+                                                                        <span>Edit</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li>
+                                                                    <a class="dropdown-item printBTN" href="javascript:void(0)">
+                                                                        <i class="feather feather-printer me-3"></i>
+                                                                        <span>Print</span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="dropdown-divider"></li>
+                                                                <li>
+                                                                    <a class="dropdown-item" href="{{ route('admin.client.destory', $client->Clientmaster_IDP) }}"
+                                                                        onclick="event.preventDefault(); if(confirm('Are you sure you want to delete this client?')) { document.getElementById('delete-form-{{ $client->Clientmaster_IDP }}').submit(); }">
+                                                                        <i class="feather feather-trash-2 me-3"></i>
+                                                                        <span>Delete</span>
+                                                                    </a>
+
+                                                                    <form id="delete-form-{{ $client->Clientmaster_IDP }}" action="{{ route('admin.client.destory', $client->Clientmaster_IDP) }}" method="POST" style="display: none;">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                    </form>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
 
                                 </div>
                             </div>
@@ -2534,9 +2545,7 @@
                     </div>
                 </div>
             </div>
-            <!-- [ Main Content ] end -->
         </div>
-        <!-- [ Footer ] start -->
         <footer class="footer">
             <p class="fs-11 text-muted fw-medium text-uppercase mb-0 copyright">
                 <span>© SEI Group. 2024. All rights reserved. | Design & Developed by Adi Creations 2024</span>
@@ -2751,7 +2760,7 @@
                             <a href="javascript:void(0);" class="file-download"><i class="feather-download"></i></a>
                         </div>
                     </div>
-                </div>  
+                </div>
             </div>
         </div>
     </div>

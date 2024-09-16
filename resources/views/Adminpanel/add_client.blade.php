@@ -31,12 +31,12 @@
             </div>
             <div class="main-content">
                 <div class="row">
-                    <form action="{{ route('client.store') }}" method="POST">
-                        @csrf
+                    <form action="{{ route('admin.client.store') }}" class="form-group" method="post" >
+                        {{csrf_field()}}
                     <div class="row">
                         <div class="col-lg-4 mb-4">
                             <label class="form-label">First Name <span class="text-danger">*</span></label>
-                            <input type="text" name="first_name" id="subservice_name" class="form-control" placeholder="First Name" required>
+                            <input type="text" name="first_name" id="subservice_name" class="form-control" placeholder="First Name">
                         </div>
 
                         <div class="col-lg-4 mb-4">
@@ -64,8 +64,6 @@
                             <input type="password" name="password" id="subservice_name" class="form-control" placeholder="Password" required>
                             
                         </div>
-
-
                     </div>
 
                     <div class="row">

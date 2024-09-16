@@ -17,7 +17,7 @@ use App\Http\Controllers\ExpertActivityController;
 use App\Http\Controllers\ClinetListController;
 use App\Http\Controllers\ClientServiceController;
 use App\Http\Controllers\ClientMasterController;
-use App\Http\Controllers\AddClientController;
+use App\Http\Controllers\AdminClientController;
 
 // Home route
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -170,7 +170,7 @@ Route::get('/get-expert-details/{id}', [QuotationController::class, 'getExpertDe
 // Route::post('client/loginForm', [ClientController::class, 'loginForm'])->name('client.loginForm');
 // Route::post('client/logout', [ClientController::class, 'logout'])->name('client.logout');
 
-Route::get('/client-list', [ClinetListController::class, 'clientList'])->name('client.list');
+// Route::get('/client-list', [ClinetListController::class, 'clientList'])->name('client.list');
 
 Route::get('/client/services', [ClientServiceController::class, 'index'])->name('client.services');
 Route::get('/client/subservices/{service_id}', [ClientServiceController::class, 'getSubservices']);
@@ -210,17 +210,25 @@ Route::get('/get-activities/{subservice_id}', [ClientMasterController::class, 'g
 
 
 
-Route::get('/add_client',[AddClientController::class,'add_client'])->name('add.client');
+// Route::get('/add_client',[AddClientController::class,'add_client'])->name('add.client');
 
-Route::get('/add_expert',[AddClientController::class,'add_expert'])->name('add.expert');
+// Route::get('/add_expert',[AddClientController::class,'add_expert'])->name('add.expert');
 
 
-Route::get('/admin/add-client', [AddClientController::class, 'add_client'])->name('client.add');
-Route::post('/admin/add-client', [AddClientController::class, 'store_client'])->name('client.store');
-Route::get('/admin/client-list', [AddClientController::class, 'list_client'])->name('client.list');
-Route::get('/admin/edit-client/{id}', [AddClientController::class, 'edit_client'])->name('client.edit');
-Route::post('/admin/update-client/{id}', [AddClientController::class, 'update_client'])->name('client.update');
-Route::get('/admin/delete-client/{id}', [AddClientController::class, 'delete_client'])->name('client.delete');
+//Admin Client Routes
+Route::get('/admin/client', [AdminClientController::class, 'index'])->name('admin.client');
+Route::get('/admin/client/create', [AdminClientController::class, 'create']);
+Route::post('/admin/client', [AdminClientController::class, 'store'])->name('admin.client.store');
+Route::get('/admin/client/{id}/edit', [AdminClientController::class, 'edit'])->name('admin.client.edit');
+Route::post('/admin/client/{id}/update', [AdminClientController::class, 'update'])->name('admin.client.update');
+Route::delete('/admin/client/{id}', [AdminClientController::class, 'destory'])->name('admin.client.destory');
+
+// Route::get('/admin/add-client', [AddClientController::class, 'add_client'])->name('admin.client.store');
+// Route::post('/admin/add-client', [AddClientController::class, 'store_client'])->name('client.store');
+// Route::get('/admin/client-list', [AddClientController::class, 'list_client'])->name('client.list');
+// Route::get('/admin/edit-client/{id}', [AddClientController::class, 'edit_client'])->name('client.edit');
+// Route::post('/admin/update-client/{id}', [AddClientController::class, 'update_client'])->name('client.update');
+// Route::get('/admin/delete-client/{id}', [AddClientController::class, 'delete_client'])->name('client.delete');
 
 
 Route::get('/client/dashboard',[ClientMasterController::class,'index'])->name('client.dashboard');
